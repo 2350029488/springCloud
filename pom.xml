@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.huanglong.com.huanglong.springcloud</groupId>
+  <artifactId>cloudhuanglong</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <!--  加载的子模块-->
+  <modules>
+    <module>cloud-provider-payment8001</module>
+    <module>cloud-consumer-order-80</module>
+    <module>cloud-api-commons</module>
+    <module>cloud-eureka-server7001</module>
+  </modules>
+  <packaging>pom</packaging>
+  <name>Maven</name>
+
+
+
+
+  <!--    父工程  版本控制 在这里写了版本是多少，那么子模块只需要引入就可以了，
+  不需要再写版本号，保证了版本的一致性  -->
+
+  <!--  统一管理jar包版本-->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--        下面这两个是版本号-->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <junit.version>4.12</junit.version>
+    <log4j.version>1.2.17</log4j.version>
+    <lombok.version>1.16.18</lombok.version>
+    <druid.version>1.1.10</druid.version>
+    <!--    mybatisPlus整合springboot-->
+    <mybatis-plus-generator>3.5.1</mybatis-plus-generator>
+    <freemarker>2.3.31</freemarker>
+  </properties>
+
+
+  <!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version  -->
+  <dependencyManagement>
+    <dependencies>
+      <!--spring boot 2.2.2.RELEASE-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--spring cloud Hoxton.SR1-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Hoxton.SR1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--spring cloud alibaba 2.1.0.RELEASE-->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+      <!--      使用mybatisPlus-->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>3.5.2</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <optional>true</optional>
+      </dependency>
+      <!--   mybatis-plus自动代码生成器1      -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatis-plus-generator}</version>
+      </dependency>
+      <!--   mybatis-plus自动代码生成器2      -->
+      <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>${freemarker}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+          <addResources>true</addResources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+<!--    解决下面插件爆红   就是在 <dependencies>中的<dependency> 下载即可-->
+<!--    <dependencies>-->
+<!--      <dependency>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-project-info-reports-plugin</artifactId>-->
+<!--        <version>3.0.0</version>-->
+<!--        <type>maven-plugin</type>-->
+<!--      </dependency>-->
+<!--      <dependency>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-clean-plugin</artifactId>-->
+<!--        <version>3.2.0</version>-->
+<!--      </dependency>-->
+<!--      <dependency>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-site-plugin</artifactId>-->
+<!--        <version>3.1</version>-->
+<!--      </dependency>-->
+<!--    </dependencies>-->
+
+
+<!--    <build>-->
+<!--      <pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
+<!--        <plugins>-->
+<!--          <plugin>-->
+<!--            <artifactId>maven-clean-plugin</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--          </plugin>-->
+<!--          <plugin>-->
+<!--            <artifactId>maven-site-plugin</artifactId>-->
+<!--            <version>3.1</version>-->
+<!--          </plugin>-->
+<!--          <plugin>-->
+<!--            <artifactId>maven-project-info-reports-plugin</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--          </plugin>-->
+<!--        </plugins>-->
+<!--      </pluginManagement>-->
+<!--      <plugins>-->
+
+
+<!--        <plugin>-->
+<!--          <groupId>org.apache.maven.plugins</groupId>-->
+<!--          <artifactId>maven-site-plugin</artifactId>-->
+<!--          <configuration>-->
+<!--            <locales>en,fr</locales>-->
+<!--          </configuration>-->
+<!--        </plugin>-->
+<!--&lt;!&ndash;         父工程中引入 热部署&ndash;&gt;-->
+<!--        <plugin>-->
+<!--          <groupId>org.springframework.boot</groupId>-->
+<!--          <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--          <configuration>-->
+<!--            <fork>true</fork>-->
+<!--            <addResources>true</addResources>-->
+<!--          </configuration>-->
+<!--        </plugin>-->
+<!--        <plugin>-->
+<!--          <groupId>org.apache.maven.plugins</groupId>-->
+<!--          <artifactId>maven-compiler-plugin</artifactId>-->
+<!--          <version>3.1</version>-->
+<!--          <configuration>-->
+<!--            <source>1.8</source>-->
+<!--            <target>1.8</target>-->
+<!--          </configuration>-->
+<!--        </plugin>-->
+<!--      </plugins>-->
+<!--    </build>-->
+
+<!--    <reporting>-->
+<!--      <plugins>-->
+<!--        <plugin>-->
+<!--          <artifactId>maven-project-info-reports-plugin</artifactId>-->
+<!--        </plugin>-->
+<!--      </plugins>-->
+<!--    </reporting>-->
+
+
+</project>
