@@ -7,12 +7,7 @@ import com.huanglong.springcloud.utlis.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -32,11 +27,6 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
-
-
-    /*8001 8002服务提供者注册到eureka中的一些基础信息  通过服务发现把信息暴露出来*/
-    @Autowired      //注意导包
-    private DiscoveryClient discoveryClient;
 
 
     @PostMapping("/create")
@@ -59,27 +49,5 @@ public class PaymentController {
             return new CommonResult(200,"查询失败",paymentById);
         }
     }
-
-    /*** 测试eureka中注册的服务有哪些*/
-    @GetMapping("/discovery")
-    public Object discovery(){
-        List<String> services = discoveryClient.getServices();
-       //获得服务清单列表
-        for (String service:services){
-            log.info(".......service:{}",service);
-            /*输出内容.......service:cloud-payment-service
-                   : .......service:cloud-order-service */
-        }
-        //或者通过微服务名称进一步获取信息 只有CLOUD-PAYMENT-SERVICE的信息
-        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        for (ServiceInstance instance: instances) {
-            log.info(instance.getServiceId()+"\t"
- +instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
-/**输出内容 * CLOUD-PAYMENT-SERVICE	192.168.17.1	8002	http://192.168.17.1:8002
-* : CLOUD-PAYMENT-SERVICE	192.168.17.1	8001	http://192.168.17.1:8001*/
-        }
-        return this.discoveryClient;
-    }
-
 
 }

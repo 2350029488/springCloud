@@ -3,10 +3,40 @@ server:
 
 eureka:
   instance:
-    hostname: localhost  #eureka服务端的实列名称
+    hostname: eureka7001.com  #eureka服务端的实列名称
   client:
     register-with-eureka: false #表示不向注册中心注册自己
     fetch-registry: false      #不获取注册表 false表示自己就是注册中心，其职责就是维护服务实例e
     service-url:
-                    #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
-      defaltZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+                    #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址 入驻地址
+#      defaultZone: http://localhost:7001/eureka/  单机是自己绑定自己 现在集群是绑定另外的一个注册中心7002
+      defaultZone: http://eureka7002.com:7002/eureka/  #这只是注册地址，
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  集群
+#spring:
+#  cloud:
+#    inetutils:
+#      ignored-interfaces:
+#        - VMware.*  # 忽略虚拟机网卡
+#      use-only-site-local-interfaces: true
+#      preferred-networks: 192.168.0.* # 优先使用 192.168.0.*
