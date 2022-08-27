@@ -1,0 +1,41 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: consul-provider-payment #服务名称 一般不要轻易改动
+  #    配置consul注册中心地址
+  cloud:
+    consul:
+      host: localhost  #ip地址
+      port: 8500   #默认端口号
+      discovery:
+        service-name: ${spring.application.name}
+        instance-id: consulPayment8006   #consul界面看到的服务名称
+        prefer-ip-address: true #访问路径可以显示ip
+
+
+
+
+
+
+
+
+
+#
+#
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/springcloud_study?serverTimezone=GMT%2B8
+#    password: root
+#    username: root
+#    type: com.alibaba.druid.pool.DruidDataSource  #这里使用druid数据源（引入了jar包的）
+#
+#
+#mybatis-plus:
+#  type-aliases-package: com.huanglong.springcloud.entity #别名设置
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印执行流程
+
+
+

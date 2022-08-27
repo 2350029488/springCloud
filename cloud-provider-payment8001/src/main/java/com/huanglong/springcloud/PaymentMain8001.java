@@ -8,8 +8,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  *@EnableEurekaClient 将其注入进eurekaServer注册中心 ，成为服务提供者provider   好给消费者（80）使用
+ @EnableDiscoveryClient /*服务发现Discovery
  */
-@EnableDiscoveryClient
+@EnableDiscoveryClient /*服务发现Discovery 这里开不开起影响不大*/
 @EnableEurekaClient
 @SpringBootApplication()
 public class PaymentMain8001 {

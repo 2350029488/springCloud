@@ -12,10 +12,10 @@ import org.springframework.web.client.RestTemplate;
  *
  */
 @Configuration
-public class ApplicationContextConfig {
+public class RestTemplateConfig {
     /*放入容器中*/
     /* 负载均衡  底层是轮询模式  一人一次轮换  */
-    @LoadBalanced //开启负载均衡
+//    @LoadBalanced //开启负载均衡 注销表示自己手写了一个负载算法 在 lb包中
     @Bean
     public RestTemplate getRestTemplate(){
         return new RestTemplate();

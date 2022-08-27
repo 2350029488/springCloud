@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * <p>
  *  前端控制器
@@ -50,4 +52,22 @@ public class PaymentController {
         }
     }
 
+    /*测试自定义负载均衡算法*/
+    @GetMapping("/lb")
+    public String getPaymentLB(){
+        return serverPort;
+    }
+
+
+    /*测试openFeign连接超时*/
+    @GetMapping("/runTimeout")
+    public String runTimeout(){
+        try {
+//            沉睡3秒再连接
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
+    }
 }

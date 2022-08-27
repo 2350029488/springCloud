@@ -12,7 +12,9 @@ eureka:
 #      defaultZone: http://localhost:7001/eureka/  单机是自己绑定自己 现在集群是绑定另外的一个注册中心7002
       defaultZone: http://eureka7002.com:7002/eureka/  #这只是注册地址，
 
-
+  server:
+    enable-self-preservation: false #关闭自我保护机制，保证不可用服务被及时踢除
+    eviction-interval-timer-in-ms: 2000 #2秒进行一次驱逐
 
 
 
