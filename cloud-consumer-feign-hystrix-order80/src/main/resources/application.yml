@@ -18,7 +18,7 @@ ribbon:
   #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
   ConnectTimeout: 5000
 
-#
-#feign:
-#  hystrix:
-#    enabled: true  这个好像不起作用
+# 用于服务降级 在注解@FeignClient中添加fallbackFactory属性值
+feign:
+  hystrix:
+    enabled: true #在Feign中开启Hystrix

@@ -95,5 +95,9 @@ public class OrderContrller {
         }
 
     }
-
+//    @GetMapping("/payment/lb")
+//    public String getPaymentLB(){
+//       return restTemplate.getForObject(PAYMENT_URL + "/payment/lb/",String.class);
+//
+//    }
 }

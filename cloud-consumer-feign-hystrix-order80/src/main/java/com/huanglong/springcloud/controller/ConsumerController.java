@@ -22,7 +22,7 @@ public class ConsumerController {
     @HystrixCommand
     @GetMapping("/consumer/hystrix/ok/{id}")
     public String paymentInfo_OK(@PathVariable("id")Integer id){
-        int xxx=10/0;
+//        int xxx=10/0;
         return paymentService.paymentInfo_OK(id);
     }
     /* 在测试客户端服务降级时服务端睡眠时间要短，不然openFeign调用接口时超时出错*/
@@ -30,8 +30,8 @@ public class ConsumerController {
             {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "2000")})
     @GetMapping("/consumer/hystrix/timeout/{id}")
     public String paymentInfo_TimeOut(@PathVariable("id")Integer id){
-       int timeNumber=1;
-       try { TimeUnit.MILLISECONDS.sleep(timeNumber*5000); } catch (InterruptedException e) { e.printStackTrace(); }
+       int timeNumber=20;
+       try { TimeUnit.MILLISECONDS.sleep(timeNumber); } catch (InterruptedException e) { e.printStackTrace(); }
         return paymentService.paymentInfo_TimeOut(id);
     }
     public String paymentInfoTimeOutFallbackMethod(Integer id){
