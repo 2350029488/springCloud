@@ -17,5 +17,5 @@ public interface IOrderService extends IService<Order> {
 
     //1. 下单成功->库存扣减成功——>账户扣减成功 == 需要修改订单状态 从0改为1
 
-    void  update( Long userId,Integer status);
+    void  update( Integer userId,Integer status);
 }

@@ -34,9 +34,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      * 创建订单->调用库存服务扣减库存->调用账户服务扣减账户余额->修改订单状态
      * 简单说：下订单->扣库存->减余额->改状态
      */
-
+  
     @Override
-    @GlobalTransactional(name = "shuibianjiao",rollbackFor = Exception.class)
+    @GlobalTransactional(name = "seata",rollbackFor = Exception.class)
     public void create(Order order) {
         log.info("......开始创建订单");
         orderMapper.create(order);
@@ -46,7 +46,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         log.info(".........订单微服务调用账户，做扣减金钱开始");
 
-        accountService.decrease(order.getUserId().longValue(),order.getMoney());
+        accountService.decrease(order.getUserId(),order.getMoney());
         log.info(".........订单微服务调用账户，做扣减金钱结束");
         log.info("...........修改订单状态");
         orderMapper.update(order.getUserId(),0);
@@ -55,7 +55,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public void update(Long userId, Integer status) {
+    public void update(Integer userId, Integer status) {
       orderMapper.update(userId,status);
     }
 }

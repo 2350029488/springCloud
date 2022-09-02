@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public interface AccountService {
     //通过用户id执行扣钱工作 两个参数  userid  money
     @PostMapping("/account/decrease")
-    CommonResult decrease(@RequestParam("userId")Long userId, @RequestParam("money") BigDecimal money);
+    CommonResult decrease(@RequestParam("userId")Integer userId, @RequestParam("money") Integer money);
 
   @GetMapping("/account/test")
     public String test();

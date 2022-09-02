@@ -26,3 +26,8 @@ mybatis-plus:
 feign:
   hystrix:
     enabled: false
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

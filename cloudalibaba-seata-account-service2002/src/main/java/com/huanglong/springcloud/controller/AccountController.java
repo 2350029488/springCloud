@@ -23,29 +23,27 @@ import java.util.concurrent.TimeUnit;
  * @since 2022-09-02
  */
 @RestController
-@RequestMapping("/account")
 public class AccountController {
     @Autowired
     private IAccountService accountService;
-    @PostMapping("/decrease")
-   public CommonResult decrease(@RequestParam("userId")Long userId, @RequestParam("money") BigDecimal money){
+    @RequestMapping("/account/decrease")
+   public CommonResult decrease(@RequestParam("userId")Integer userId, @RequestParam("money") Integer money){
 
         LambdaQueryWrapper<Account> queryWrapper=new LambdaQueryWrapper<>();
         LambdaQueryWrapper<Account> eq = queryWrapper.eq(Account::getUserId, userId);
         Account account = accountService.getOne(eq);
         LambdaUpdateWrapper<Account> wrapper=new LambdaUpdateWrapper<>();
-        LambdaUpdateWrapper<Account> updatewapper = wrapper.set(Account::getUsed, account.getUsed().add(money))
-                .set(Account::getResidue, account.getResidue().subtract(money))
+        LambdaUpdateWrapper<Account> updatewapper = wrapper.set(Account::getUsed, account.getUsed()+money)
+                .set(Account::getResidue, account.getResidue()-money)
                 .eq(Account::getUserId, userId);
         System.out.println("------->account-service中扣减账户余额开始");
         //模拟超时异常
-        try { TimeUnit.SECONDS.sleep(20); } catch (InterruptedException e) { e.printStackTrace(); }
+//        try { TimeUnit.SECONDS.sleep(200); } catch (InterruptedException e) { e.printStackTrace(); }
         accountService.update(updatewapper);
         System.out.println("------->account-service中扣减账户余额结束");
         return new CommonResult(200,"账户扣款成功");
-
     }
-    @GetMapping("/test")
+    @GetMapping("/account/test")
     public String test(){
         return "正确";
     }

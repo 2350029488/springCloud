@@ -15,6 +15,6 @@ public interface StorageService {
 
     //库存减数量 通过产品id productId获取这条信息，对这条信息的count进行减少
     @PostMapping("/storage/decrease")
-    CommonResult decrease(@RequestParam("productId")Long productId,@RequestParam("count")Integer count);
+    CommonResult decrease(@RequestParam("productId")Integer productId,@RequestParam("count")Integer count);
 
 }

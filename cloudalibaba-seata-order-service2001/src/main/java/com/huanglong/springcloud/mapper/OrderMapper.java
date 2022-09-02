@@ -20,7 +20,7 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     //1. 下单成功->库存扣减成功——>账户扣减成功 == 需要修改订单状态 从0改为1
 
-    void  update(@Param("userId") Long userId,@Param("status")Integer status);
+    void  update(@Param("userId") Integer userId,@Param("status")Integer status);
 
 
 }

@@ -20,12 +20,11 @@ import org.springframework.stereotype.Controller;
  * @since 2022-09-02
  */
 @RestController
-@RequestMapping("/storage")
 public class StorageController {
     @Autowired
     private IStorageService storageService;
-    @PostMapping("/decrease")
-    public CommonResult decrease(@RequestParam("productId")Long productId, @RequestParam("count")Integer count){
+    @RequestMapping("/storage/decrease")
+    public CommonResult decrease(@RequestParam("productId")Integer productId, @RequestParam("count")Integer count){
         LambdaQueryWrapper<Storage> queryWrapper=new LambdaQueryWrapper<>();
         LambdaQueryWrapper<Storage> eq = queryWrapper.eq(Storage::getProductId, productId);
         Storage storage = storageService.getOne(eq);

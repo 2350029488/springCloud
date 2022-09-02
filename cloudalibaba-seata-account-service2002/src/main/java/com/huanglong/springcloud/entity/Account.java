@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 黄隆
@@ -23,61 +23,76 @@ public class Account implements Serializable {
      * id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 用户id
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      * 总额度
      */
-    private BigDecimal total;
+    private Integer total;
 
     /**
      * 已用余额
      */
-    private BigDecimal used;
+    private Integer used;
 
     /**
      * 剩余可用额度
      */
-    private BigDecimal residue;
+    private Integer residue;
 
-    public Long getId() {
+    public Account() {
+    }
+
+    public Account(Integer id, Integer userId, Integer total, Integer used, Integer residue) {
+        this.id = id;
+        this.userId = userId;
+        this.total = total;
+        this.used = used;
+        this.residue = residue;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-    public Long getUserId() {
+
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public BigDecimal getTotal() {
+
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
-    public BigDecimal getUsed() {
+
+    public Integer getUsed() {
         return used;
     }
 
-    public void setUsed(BigDecimal used) {
+    public void setUsed(Integer used) {
         this.used = used;
     }
-    public BigDecimal getResidue() {
+
+    public Integer getResidue() {
         return residue;
     }
 
-    public void setResidue(BigDecimal residue) {
+    public void setResidue(Integer residue) {
         this.residue = residue;
     }
 

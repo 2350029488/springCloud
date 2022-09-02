@@ -22,6 +22,11 @@ public class test {
         LambdaUpdateWrapper<Storage> updatewapper = wrapper.set(Storage::getUsed, storage.getUsed()+20)
                 .set(Storage::getResidue,storage.getResidue()-20)
                 .eq(Storage::getProductId, 1);
-        storageService.update(updatewapper);
+        boolean update = storageService.update(updatewapper);
+        System.out.println(update);
+    }
+    @Test
+    public void tests(){
+        System.out.println(storageService.list());
     }
 }

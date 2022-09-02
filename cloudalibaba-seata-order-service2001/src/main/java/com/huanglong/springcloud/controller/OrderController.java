@@ -29,8 +29,6 @@ public class OrderController {
 
     @GetMapping("/create")
     public CommonResult create(Order order){
-        System.out.println(order);
-        System.out.println(order.getMoney());
         orderService.create(order);
         return new CommonResult(200,"订单创建成功");
     }

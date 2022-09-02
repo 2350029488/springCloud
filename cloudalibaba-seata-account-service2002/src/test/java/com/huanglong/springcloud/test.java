@@ -24,8 +24,8 @@ public class test {
         Account account = accountService.getOne(eq);
         LambdaUpdateWrapper<Account> wrapper=new LambdaUpdateWrapper<>();
         BigDecimal decimal=new BigDecimal(1);
-        LambdaUpdateWrapper<Account> updatewapper = wrapper.set(Account::getUsed, account.getUsed().add(decimal))
-                .set(Account::getResidue, account.getResidue().subtract(decimal))
+        LambdaUpdateWrapper<Account> updatewapper = wrapper.set(Account::getUsed, account.getUsed()+10)
+                .set(Account::getResidue, account.getResidue()-10)
                 .eq(Account::getUserId, 1);
         accountService.update(updatewapper);
     }

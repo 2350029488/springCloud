@@ -20,17 +20,17 @@ public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 用户id
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      * 产品id
      */
-    private Long productId;
+    private Integer productId;
 
     /**
      * 数量
@@ -40,7 +40,7 @@ public class Order implements Serializable {
     /**
      * 金额
      */
-    private BigDecimal money;
+    private Integer money;
 
     /**
      * 订单状态：0：创建中；1：已完结
@@ -50,7 +50,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long id, Long userId, Long productId, Integer count, BigDecimal money, Integer status) {
+    public Order(Integer id, Integer userId, Integer productId, Integer count, Integer money, Integer status) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -59,27 +59,32 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public Long getId() {
+
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-    public Long getUserId() {
+
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public Long getProductId() {
+
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
+
     public Integer getCount() {
         return count;
     }
@@ -87,13 +92,15 @@ public class Order implements Serializable {
     public void setCount(Integer count) {
         this.count = count;
     }
-    public BigDecimal getMoney() {
+
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
+
     public Integer getStatus() {
         return status;
     }

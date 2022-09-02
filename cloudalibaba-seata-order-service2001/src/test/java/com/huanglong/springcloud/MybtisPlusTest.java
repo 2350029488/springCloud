@@ -3,12 +3,21 @@ package com.huanglong.springcloud;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.huanglong.springcloud.entity.Order;
+import com.huanglong.springcloud.service.IOrderService;
+import org.checkerframework.checker.units.qual.A;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
+import java.util.List;
 
 @SpringBootTest
 public class MybtisPlusTest {
+    @Autowired
+    private IOrderService orderService;
+
     public static void main(String[] args) {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/seata_order?serverTimezone=GMT%2B8", "root", "root")
                 .globalConfig(builder -> {
@@ -28,5 +37,11 @@ public class MybtisPlusTest {
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
+    }
+
+    @Test
+    public void tets(){
+        List<Order> list = orderService.list();
+        list.forEach(System.out::println);
     }
 }
