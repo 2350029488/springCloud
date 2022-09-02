@@ -6,7 +6,7 @@ spring:
     name: config-client
   rabbitmq: #配置rabbitmq
     password: 123456
-    host: 192.168.17.143 #注意这个ip linux会变的
+    host: 192.168.17.144 #注意这个ip linux会变的
     port: 5672
     username: admin
 

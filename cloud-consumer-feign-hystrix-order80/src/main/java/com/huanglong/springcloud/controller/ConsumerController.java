@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-/*服务降级全局配置 只要是注解@HystrixCommand并且没有指明方法的，出现错误都会调用该方法payment_Global_FallbackMethod */
+/*服务降级全局配置 只要是注解@HystrixCommand并且没有指明方+法的，出现错误都会调用该方法payment_Global_FallbackMethod */
 @DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
 public class ConsumerController {
     @Autowired

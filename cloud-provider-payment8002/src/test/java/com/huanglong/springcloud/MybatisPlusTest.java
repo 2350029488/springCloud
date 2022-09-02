@@ -18,7 +18,7 @@ public class MybatisPlusTest {
                             .outputDir("D:\\SpringCloud\\springCloudStudy\\cloud2022\\cloud-provider-payment8081\\src\\main\\java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.huanglong.com.huanglong.springcloud") // 设置父包名
+                    builder.parent("com.huanglong.com.com.springcloud") // 设置父包名
                             .moduleName("") // 设置父包模块名
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D:\\SpringCloud\\springCloudStudy\\cloud2022\\cloud-provider-payment8081\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })

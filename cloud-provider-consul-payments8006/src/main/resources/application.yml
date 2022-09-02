@@ -33,7 +33,7 @@ spring:
 #
 #
 #mybatis-plus:
-#  type-aliases-package: com.huanglong.springcloud.entity #别名设置
+#  type-aliases-package: com.com.springcloud.entity #别名设置
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印执行流程
 

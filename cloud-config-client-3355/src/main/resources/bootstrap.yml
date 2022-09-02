@@ -7,17 +7,18 @@ spring:
     name: config-client
   rabbitmq: #配置rabbitmq
     password: 123456
-    host: 192.168.17.143 #注意这个ip linux会变的
+    host: 192.168.17.144 #注意这个ip linux会变的
     port: 5672
     username: admin
 
   cloud:
     config:
+      uri: http://localhost:3344  #配置中心地址k
       label: main #分支名字
       name: config # 配置文件名
       profile: dev  #读取后缀名称
        #上面三个结合起来就是 main分支下config-dev.yml的配置文件  被读取http://config-3344.com:3344/main/config-dev.yml
-      uri: http://localhost:3344  #配置中心地址k
+
          #实质就是先通过服务中心3344读取文件，然后客户端通过服务端3344读取文件
 
 #config动态刷新 这里暴露端点

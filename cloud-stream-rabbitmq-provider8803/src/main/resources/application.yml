@@ -1,0 +1,32 @@
+server:
+  port: 8803
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 2
+    instance-id: receive-8803.com
+
+spring:
+  application:
+    name: cloud-stream-consumer
+  rabbitmq:
+    port: 5672
+    username: admin
+    password: 123456
+    host: 192.168.17.144
+  cloud:
+    stream:
+      binders:
+        defaultRabbit: #表示定义的名称，用于于binding整合
+          type: rabbit # 消息组件类型
+      bindings: # 服务的整合处理
+        input: # 这个名字是一个通道的名称
+          destination: studyExchange # 表示要使用的Exchange名称定义 ->交换机名
+          content-type: application/json # 设置消息类型，本次为json，文本则设置“text/plain”
+          default-binder: defaultRabbit # 设置要绑定的消息服务的具体设置
+          group: huanglong #进行分组

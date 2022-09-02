@@ -22,7 +22,6 @@ public class IMessageProviderImpl implements IMessageProvider {
     @Override
     public String send() {
         String message = IdUtil.simpleUUID();
-
         //把消息用绑定器绑定起来，通过管道（output）进行发送（send）  build构建出来
         output.send(MessageBuilder.withPayload(message).build());
         System.out.println("*****************message"+message);

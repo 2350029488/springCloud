@@ -5,6 +5,13 @@ spring:
   application:
     name: cloud-payment-service #服务名称 一般不要轻易改动
 
+  #SpringCloud Sleuth分布式请求链路跟踪
+  zipkin:
+    base-url: http://localhost:9411 #默认地址
+  sleuth:
+    sampler:
+      probability: 1 #采样率值介于 0 到 1 之间，1 则表示全部采集
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springcloud_study?serverTimezone=GMT%2B8

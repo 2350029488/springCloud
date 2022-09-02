@@ -1,0 +1,28 @@
+server:
+  port: 2003
+spring:
+  application:
+    name: seata-storage-service  #服务名称
+
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: seata #自定义事务组名称需要与seata-server中的对应
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_storage?serverTimezone=GMT%2B8
+    password: root
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource  #这里使用druid数据源（引入了jar包的）
+
+mybatis-plus:
+  type-aliases-package: com.huanglong.springcloud.entity #别名设置
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印执行流程
+  mapper-locations: classpath*:/mapper/**/*.xml
+feign:
+  hystrix:
+    enabled: false

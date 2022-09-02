@@ -38,3 +38,20 @@ spring:
 #            - Header=X-Request-Id, \d+  # 请求头要有X-Request-Id属性并且值为整数的正则表达式
 #            - Cookie=username,zzyy #携带cookie进行访问
 #            - Method=GET  #表示时get请求才允许
+
+
+#需要排除的路径
+agilepay:
+  gateway:
+    shouldSkipUrls:
+      - /gatherpay/doc.html
+      - /payment/lb/**
+      - /gatherpay/passive/callback
+      - /gatherpay/static/webjars/**
+      - /gatherpay/resources/webjars/
+      - /gatherpay/resources/
+      - /gatherpay/swagger-ui.html
+      - /gatherpay/webjars/**
+      - /gatherpay/favicon.ico
+      - /gatherpay/swagger-resources
+      - /gatherpay/v3/api-docs

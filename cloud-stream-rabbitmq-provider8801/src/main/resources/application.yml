@@ -13,12 +13,12 @@ eureka:
     instance-id: send-8801.com  #在注册中心显示的主机名称
     prefer-ip-address: true  #访问的路径变为ip
 
-# rabbitmq启动不是在本机时的配置
+# rabbitmq启动在linux时的配置
 spring:
   application:
     name: cloud-stream-provider
   rabbitmq:
-    host: 192.168.17.143
+    host: 192.168.17.144
     port: 5672
     username: admin
     password: 123456
